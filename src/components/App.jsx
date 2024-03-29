@@ -1,16 +1,20 @@
+import NotFound from 'pages/NotFound/NotFound';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './Layout/Layout';
+import Catalog from '../pages/Catalog/Catalog';
+import Favorites from '../pages/Favorites/Favorites';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route path="catalog" element={<Catalog />} />
+        <Route path="favorites" element={<Favorites />} />
+      </Routes>{' '}
     </div>
   );
 };
