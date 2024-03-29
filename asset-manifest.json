@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/autorent/static/css/main.7acaea2f.css",
-    "main.js": "/autorent/static/js/main.07d3183d.js",
+    "main.js": "/autorent/static/js/main.10effdd3.js",
     "index.html": "/autorent/index.html",
     "main.7acaea2f.css.map": "/autorent/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/autorent/static/js/main.07d3183d.js.map"
+    "main.10effdd3.js.map": "/autorent/static/js/main.10effdd3.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/js/main.10effdd3.js"
   ]
 }
