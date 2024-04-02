@@ -9,7 +9,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <PersistGate loading={null} persistor={persistor}>
-    <BrowserRouter basename="https://rybalkoyuliia.github.io/autorent">
+    <BrowserRouter basename="/autorent">
+      {/* <BrowserRouter> */}
       <Provider store={store}>
         <App />
       </Provider>
