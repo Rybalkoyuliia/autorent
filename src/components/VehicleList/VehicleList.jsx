@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectCars,
@@ -97,6 +97,12 @@ const VehicleList = () => {
       localStorage.setItem('favorite', JSON.stringify(favorites));
     }
   };
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorite')) || [];
+    setFavorite(favorites);
+  }, []);
+
   return (
     <>
       <StyledCatalogList>

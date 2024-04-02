@@ -87,7 +87,7 @@ export const FormLabel = () => {
     reset();
     dispatch(fetchDataThunk(1));
   };
-
+  console.log(brand);
   return (
     <StyledForm onSubmit={handleSubmit(onSearch)}>
       <StyledLabel>

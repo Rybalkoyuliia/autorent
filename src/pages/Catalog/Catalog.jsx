@@ -17,14 +17,17 @@ import { selectCars } from '../../redux/slice';
 const Catalog = () => {
   const [page, setPage] = useState(1);
   const vehicles = useSelector(selectCars);
+
   const onLoadMore = () => {
     setPage(page + 1);
     dispatch(fetchDataThunk(page + 1));
   };
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchDataThunk());
   }, [dispatch]);
+
   return (
     <StyledMainContainerMain>
       <FormLabel />
