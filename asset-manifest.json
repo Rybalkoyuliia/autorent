@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/autorent/static/css/main.8a2874a0.css",
-    "main.js": "/autorent/static/js/main.d4a7b751.js",
+    "main.js": "/autorent/static/js/main.3e46e185.js",
     "static/media/BlueCar.avif": "/autorent/static/media/BlueCar.52eaffaa4d6410195114.avif",
     "static/media/wheel.png": "/autorent/static/media/wheel.ded843d7b94e470a002c.png",
     "static/media/sprite.svg": "/autorent/static/media/sprite.5bc8352be370aae283e2e9ad48feeb6f.svg",
     "index.html": "/autorent/index.html",
     "main.8a2874a0.css.map": "/autorent/static/css/main.8a2874a0.css.map",
-    "main.d4a7b751.js.map": "/autorent/static/js/main.d4a7b751.js.map"
+    "main.3e46e185.js.map": "/autorent/static/js/main.3e46e185.js.map"
   },
   "entrypoints": [
     "static/css/main.8a2874a0.css",
-    "static/js/main.d4a7b751.js"
+    "static/js/main.3e46e185.js"
   ]
 }
