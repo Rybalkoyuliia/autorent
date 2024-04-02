@@ -1,3 +1,12 @@
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  selectCars,
+  selectFilteredCarsBrand,
+  selectFilteredCarsMileageFrom,
+  selectFilteredCarsMileageTo,
+  selectFilteredCarsPrice,
+} from '../../redux/slice';
 import {
   StyledAccent,
   StyledCatalogImg,
@@ -13,19 +22,64 @@ import {
   StyledVehicleChracteristicsItem,
   StyledVehicleChracteristicsItemLast,
   StyledVehicleChracteristicsList,
-} from 'components/VehicleList/VehicleList.styled';
-import React, { useEffect, useState } from 'react';
-import sprite from '../../img/sprite.svg';
+} from './VehicleList.styled';
 import Modal from 'components/Modal/Modal';
-import { useSelector } from 'react-redux';
-import { selectCars } from '../../redux/slice';
-import { StyeldFavoritesMain } from './Favorites.styled';
+import sprite from '../../img/sprite.svg';
 
-const Favorites = () => {
-  const [favorite, setFavorite] = useState([]);
+const VehicleList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [id, setId] = useState();
+
   const vehicles = useSelector(selectCars);
+  const filterBrand = useSelector(selectFilteredCarsBrand);
+  const filterPrice = useSelector(selectFilteredCarsPrice);
+  const filterMileageFrom = useSelector(selectFilteredCarsMileageFrom);
+  const filterMileageTo = useSelector(selectFilteredCarsMileageTo);
+
+  const handleFilter = () => {
+    let filteredVehicles = [...vehicles];
+
+    if (filterBrand !== '') {
+      filteredVehicles = filteredVehicles.filter(
+        vehicle => vehicle.make === filterBrand
+      );
+    }
+
+    if (filterPrice !== '') {
+      let tempVehicles = [...filteredVehicles];
+      filteredVehicles = tempVehicles.filter(
+        vehicle =>
+          parseFloat(vehicle.rentalPrice.replace('$', '')) <
+          parseFloat(filterPrice)
+      );
+    }
+
+    if (filterMileageFrom !== null) {
+      let tempVehicles = [...filteredVehicles];
+      filteredVehicles = tempVehicles.filter(
+        vehicle => vehicle.mileage > filterMileageFrom
+      );
+    }
+
+    if (filterMileageTo !== null) {
+      let tempVehicles = [...filteredVehicles];
+      filteredVehicles = tempVehicles.filter(
+        vehicle => vehicle.mileage < filterMileageTo
+      );
+    }
+
+    if (
+      filterBrand === '' &&
+      filterPrice === '' &&
+      filterMileageFrom === null &&
+      filterMileageTo === null
+    ) {
+      return vehicles;
+    } else {
+      return filteredVehicles;
+    }
+  };
+  const [favorite, setFavorite] = useState([]);
 
   const toggleHeart = id => {
     const favorites = JSON.parse(localStorage.getItem('favorite')) || [];
@@ -43,25 +97,10 @@ const Favorites = () => {
       localStorage.setItem('favorite', JSON.stringify(favorites));
     }
   };
-
-  useEffect(() => {
-    const fav = JSON.parse(localStorage.getItem('favorite'));
-    if (fav) {
-      setFavorite(fav);
-    }
-  }, []);
-
-  const getFavList = () => {
-    const favoriteVehicles = vehicles.filter(vehicle =>
-      favorite.includes(vehicle.id)
-    );
-    return favoriteVehicles;
-  };
-
   return (
-    <StyeldFavoritesMain>
+    <>
       <StyledCatalogList>
-        {getFavList().map(vehicle => (
+        {handleFilter().map(vehicle => (
           <StyledCatalogLi key={vehicle.id}>
             <StyledImgCatalogWrapper>
               <StyledHeartGrey
@@ -137,8 +176,8 @@ const Favorites = () => {
         }}
         id={id}
       />
-    </StyeldFavoritesMain>
+    </>
   );
 };
 
-export default Favorites;
+export default VehicleList;
