@@ -96,6 +96,14 @@ export const StyledLearnMoreButton = styled.button`
   font-weight: 600;
   font-size: 14px;
   margin: 0 auto;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: rgba(11, 68, 205, 1);
+  }
+  &:active {
+    background-color: darkblue;
+  }
 `;
 
 export const LoadMoreButton = styled.button`
@@ -109,6 +117,13 @@ export const LoadMoreButton = styled.button`
   text-decoration-skip-ink: none;
   color: rgba(52, 112, 255, 1);
   cursor: pointer;
+  &:hover,
+  &:focus {
+    color: rgba(11, 68, 205, 1);
+  }
+  &:active {
+    color: darkblue;
+  }
 `;
 export const LoadMoreButtonContainer = styled.div`
   width: 100%;

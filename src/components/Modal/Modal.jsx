@@ -143,7 +143,10 @@ const Modal = ({ open, onClose, id }) => {
               </StyledModalRequirementsItem>
             </StyledModalRequirementsList>
             <StyledModalRentalButton
-              onClick={() => (window.location.href = 'tel:+380730000000')}
+              onClick={e => {
+                e.preventDefault();
+                window.location.href = 'tel:+380730000000';
+              }}
             >
               Rental Car
             </StyledModalRentalButton>

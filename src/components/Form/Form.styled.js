@@ -67,6 +67,14 @@ export const StyledSearchButton = styled.button`
   color: rgba(255, 255, 255, 1);
   font-weight: 600;
   font-size: 14px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: rgba(11, 68, 205, 1);
+  }
+  &:active {
+    background-color: darkblue;
+  }
 `;
 
 export const StyledResetButton = styled.button`
@@ -80,4 +88,12 @@ export const StyledResetButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: rgba(11, 68, 205, 1);
+  }
+  &:active {
+    background-color: darkblue;
+  }
 `;

@@ -47,6 +47,14 @@ export const StyledLink = styled(Link)`
   padding: 12px 100px;
   border-radius: 12px;
   font-size: 30px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: rgba(11, 68, 205, 1);
+  }
+  &:active {
+    background-color: darkblue;
+  }
 `;
 
 export const StyledMarkList = styled.ul`

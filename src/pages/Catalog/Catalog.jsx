@@ -35,7 +35,14 @@ const Catalog = () => {
         <VehicleList />{' '}
         {vehicles.length < 25 && (
           <LoadMoreButtonContainer>
-            <LoadMoreButton onClick={onLoadMore}>Load more</LoadMoreButton>
+            <LoadMoreButton
+              onClick={e => {
+                e.preventDefault();
+                onLoadMore();
+              }}
+            >
+              Load more
+            </LoadMoreButton>
           </LoadMoreButtonContainer>
         )}
       </StyledCatalogContainer>

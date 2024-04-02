@@ -136,4 +136,12 @@ export const StyledModalRentalButton = styled.button`
   font-weight: 600;
   font-size: 14px;
   line-height: 1.4;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: rgba(11, 68, 205, 1);
+  }
+  &:active {
+    background-color: darkblue;
+  }
 `;
