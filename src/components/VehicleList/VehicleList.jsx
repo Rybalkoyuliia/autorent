@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
+import Modal from 'components/Modal/Modal';
+import NotFound from 'pages/NotFound/NotFound';
 import {
   selectCars,
   selectFilteredCarsBrand,
@@ -7,6 +10,8 @@ import {
   selectFilteredCarsMileageTo,
   selectFilteredCarsPrice,
 } from '../../redux/slice';
+
+import sprite from '../../img/sprite.svg';
 import {
   StyledAccent,
   StyledCatalogImg,
@@ -23,8 +28,6 @@ import {
   StyledVehicleChracteristicsItemLast,
   StyledVehicleChracteristicsList,
 } from './VehicleList.styled';
-import Modal from 'components/Modal/Modal';
-import sprite from '../../img/sprite.svg';
 
 const VehicleList = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -102,79 +105,86 @@ const VehicleList = () => {
     const favorites = JSON.parse(localStorage.getItem('favorite')) || [];
     setFavorite(favorites);
   }, []);
-
+  console.log(handleFilter().length);
   return (
     <>
-      <StyledCatalogList>
-        {handleFilter().map(vehicle => (
-          <StyledCatalogLi key={vehicle.id}>
-            <StyledImgCatalogWrapper>
-              <StyledHeartGrey
-                onClick={() => {
-                  toggleHeart(vehicle.id);
-                }}
-              >
-                {!favorite.includes(vehicle.id) ? (
-                  <svg width="18" height="18">
-                    <use xlinkHref={`${sprite}#icon-heart`} />
-                  </svg>
-                ) : (
-                  <svg width="18" height="18">
-                    <use
-                      xlinkHref={`${sprite}#icon-BlueHeart`}
-                      fill="rgba(52, 112, 255, 1)"
-                    />
-                  </svg>
-                )}
-              </StyledHeartGrey>
-              <StyledCatalogImg src={vehicle.img} alt={vehicle.description} />
-            </StyledImgCatalogWrapper>
-            <StyledInfoWrapper>
-              <div>
-                <StyledTitleWrapper>
-                  <StyledLiTitle>
-                    {`${vehicle.make}`}{' '}
-                    <StyledAccent>{`${vehicle.model}`}</StyledAccent>,{' '}
-                    {`${vehicle.year}`}
-                  </StyledLiTitle>
-                  <StyledLiTitlePrice>{vehicle.rentalPrice}</StyledLiTitlePrice>
-                </StyledTitleWrapper>
-                <StyledVehicleChracteristicsList>
-                  <StyledVehicleChracteristicsItem>
-                    {vehicle.address.split(', ')[1]}
-                  </StyledVehicleChracteristicsItem>
-                  <StyledVehicleChracteristicsItem>
-                    {vehicle.address.split(', ')[2]}
-                  </StyledVehicleChracteristicsItem>
-                  <StyledVehicleChracteristicsItem>
-                    {vehicle.rentalCompany}
-                  </StyledVehicleChracteristicsItem>
-                  <StyledVehicleChracteristicsItem>
-                    {vehicle.type}
-                  </StyledVehicleChracteristicsItem>
-                  <StyledVehicleChracteristicsItem>
-                    {vehicle.model}
-                  </StyledVehicleChracteristicsItem>
-                  <StyledVehicleChracteristicsItem>
-                    {vehicle.id}
-                  </StyledVehicleChracteristicsItem>
-                  <StyledVehicleChracteristicsItemLast>
-                    {vehicle.functionalities[0]}
-                  </StyledVehicleChracteristicsItemLast>
-                </StyledVehicleChracteristicsList>
-              </div>
-              <StyledLearnMoreButton
-                onClick={() => {
-                  setIsOpen(true);
-                  setId(vehicle.id);
-                }}
-              >
-                Learn more
-              </StyledLearnMoreButton>
-            </StyledInfoWrapper>
-          </StyledCatalogLi>
-        ))}
-      </StyledCatalogList>
+      {handleFilter().length !== 0 ? (
+        <StyledCatalogList>
+          {handleFilter().map(vehicle => (
+            <StyledCatalogLi key={vehicle.id}>
+              <StyledImgCatalogWrapper>
+                <StyledHeartGrey
+                  onClick={() => {
+                    toggleHeart(vehicle.id);
+                  }}
+                >
+                  {!favorite.includes(vehicle.id) ? (
+                    <svg width="18" height="18">
+                      <use xlinkHref={`${sprite}#icon-heart`} />
+                    </svg>
+                  ) : (
+                    <svg width="18" height="18">
+                      <use
+                        xlinkHref={`${sprite}#icon-BlueHeart`}
+                        fill="rgba(52, 112, 255, 1)"
+                      />
+                    </svg>
+                  )}
+                </StyledHeartGrey>
+                <StyledCatalogImg src={vehicle.img} alt={vehicle.description} />
+              </StyledImgCatalogWrapper>
+              <StyledInfoWrapper>
+                <div>
+                  <StyledTitleWrapper>
+                    <StyledLiTitle>
+                      {`${vehicle.make}`}{' '}
+                      <StyledAccent>{`${vehicle.model}`}</StyledAccent>,{' '}
+                      {`${vehicle.year}`}
+                    </StyledLiTitle>
+                    <StyledLiTitlePrice>
+                      {vehicle.rentalPrice}
+                    </StyledLiTitlePrice>
+                  </StyledTitleWrapper>
+                  <StyledVehicleChracteristicsList>
+                    <StyledVehicleChracteristicsItem>
+                      {vehicle.address.split(', ')[1]}
+                    </StyledVehicleChracteristicsItem>
+                    <StyledVehicleChracteristicsItem>
+                      {vehicle.address.split(', ')[2]}
+                    </StyledVehicleChracteristicsItem>
+                    <StyledVehicleChracteristicsItem>
+                      {vehicle.rentalCompany}
+                    </StyledVehicleChracteristicsItem>
+                    <StyledVehicleChracteristicsItem>
+                      {vehicle.type}
+                    </StyledVehicleChracteristicsItem>
+                    <StyledVehicleChracteristicsItem>
+                      {vehicle.model}
+                    </StyledVehicleChracteristicsItem>
+                    <StyledVehicleChracteristicsItem>
+                      {vehicle.id}
+                    </StyledVehicleChracteristicsItem>
+                    <StyledVehicleChracteristicsItemLast>
+                      {vehicle.functionalities[0]}
+                    </StyledVehicleChracteristicsItemLast>
+                  </StyledVehicleChracteristicsList>
+                </div>
+                <StyledLearnMoreButton
+                  onClick={() => {
+                    setIsOpen(true);
+                    setId(vehicle.id);
+                  }}
+                >
+                  Learn more
+                </StyledLearnMoreButton>
+              </StyledInfoWrapper>
+            </StyledCatalogLi>
+          ))}
+        </StyledCatalogList>
+      ) : (
+        <NotFound />
+      )}
+
       <Modal
         open={isOpen}
         onClose={() => {

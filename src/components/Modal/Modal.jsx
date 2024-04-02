@@ -1,6 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
 import { selectCars } from '../../redux/slice';
+
+import sprite from '../../img/sprite.svg';
 import {
   StyledCloseButton,
   StyledDescription,
@@ -19,7 +22,6 @@ import {
   StyledSmallTitle,
   StyledVehicleChracteristicsListModal,
 } from './Modal.styled';
-import sprite from '../../img/sprite.svg';
 
 const Modal = ({ open, onClose, id }) => {
   const vehicles = useSelector(selectCars);

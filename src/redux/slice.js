@@ -5,7 +5,6 @@ const initialState = {
   cars: [],
   isLoading: false,
   error: null,
-  favoriteList: [],
   filters: {
     brand: '',
     price: '',
@@ -46,7 +45,6 @@ const slice = createSlice({
     selectFilteredCarsPrice: state => state.filters.price,
     selectFilteredCarsMileageFrom: state => state.filters.mileageFrom,
     selectFilteredCarsMileageTo: state => state.filters.mileageTo,
-    selectFavorites: state => state.favoriteList,
     selectIsLoading: state => state.isLoading,
     selectIsError: state => state.error,
   },
@@ -59,7 +57,6 @@ export const {
   selectFilteredCarsPrice,
   selectFilteredCarsMileageFrom,
   selectFilteredCarsMileageTo,
-  selectFavorites,
   selectIsLoading,
   selectIsError,
 } = slice.selectors;

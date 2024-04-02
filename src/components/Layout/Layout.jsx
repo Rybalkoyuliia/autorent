@@ -1,6 +1,9 @@
-import Navigation from 'pages/Navigation/Navigation';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+
+import Navigation from 'pages/Navigation/Navigation';
+import Loader from 'components/Loader/Loader';
+
 import { StyledHeader } from './Layout.styled';
 
 const Layout = () => {
@@ -9,7 +12,9 @@ const Layout = () => {
       <StyledHeader>
         <Navigation />
       </StyledHeader>{' '}
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

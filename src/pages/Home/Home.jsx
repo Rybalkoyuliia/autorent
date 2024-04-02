@@ -1,4 +1,6 @@
 import React from 'react';
+
+import sprite from '../../img/sprite.svg';
 import {
   ImgStyledContainer,
   MainSlogan,
@@ -8,7 +10,6 @@ import {
   StyledMain,
   StyledMarkList,
 } from './Home.styled';
-import sprite from '../../img/sprite.svg';
 
 const Home = () => {
   return (

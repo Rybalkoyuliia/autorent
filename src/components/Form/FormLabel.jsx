@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { useForm } from 'react-hook-form';
+
+import { fetchDataThunk } from '../../redux/operations';
+
+import { GrPowerReset } from 'react-icons/gr';
 import { clearFilters, filterCars, selectCars } from '../../redux/slice';
 import {
   StyledForm,
@@ -10,9 +15,6 @@ import {
   StyledResetButton,
   StyledSearchButton,
 } from './Form.styled';
-import { GrPowerReset } from 'react-icons/gr';
-import { useForm } from 'react-hook-form';
-import { fetchDataThunk } from '../../redux/operations';
 
 export const FormLabel = () => {
   const dispatch = useDispatch();
